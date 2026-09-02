@@ -8,20 +8,14 @@ public class MaxProfit {
         System.out.println(profit);
     }
 
-    //O(n^2) //TO DO
     public int solution(int [] prices){
 
         int profit = 0;
-        for (int i = 0; i < prices.length - 1; i++) {
+        int minPrice = prices[0];
+        for (int i = 0; i < prices.length; i++) {
             int actualPrice = prices[i];
-
-            int day = i+1;
-            while (day<=prices.length-1){
-                if (prices[day]> actualPrice) {
-                    profit = Math.max(profit, prices[day]-actualPrice);
-                }
-                day++;
-            }
+            profit = Math.max(profit, actualPrice - minPrice);
+            minPrice = Math.min(minPrice, actualPrice);
         }
 
         return profit;
